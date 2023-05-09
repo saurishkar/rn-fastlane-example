@@ -16,9 +16,21 @@
 default_platform(:android)
 
 platform :android do
-  desc "Runs all the tests"
-  lane :test do
-    gradle(task: "test")
+
+  # lane :increment_version do
+  #   latest_release = firebase_app_distribution_get_latest_release(
+  #     app: "<app-id>"
+  #   )
+  #   increment_version_code({ version_code: latest_release[:buildVersion].to_i + 1 })
+  # end
+
+  lane :distribute do
+    gradle(task: "clean assembleRelease")
+    release = firebase_app_distribution(
+      app: "<app-id>",
+      testers: "<emails>",
+      release_notes: "Lots of amazing new features to test out!"
+    )
   end
 
   desc "Submit a new Beta Build to Crashlytics Beta"
