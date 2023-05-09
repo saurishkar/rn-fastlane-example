@@ -97,6 +97,9 @@ yarn-error.log
 # Bundle artifact
 *.jsbundle
 
+# env
+.env
+
 # Ruby / CocoaPods
 /ios/Pods/
 /apps/**/ios/Pods
